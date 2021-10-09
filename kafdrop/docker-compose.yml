@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    restart: "always"
+    ports:
+      - "9980:9000"
+    environment:
+      KAFKA_BROKERCONNECT: "pipeline-kafka-1:9092,pipeline-kafka-2:9092,pipeline-kafka-3:9092,pipeline-kafka-4:9092,pipeline-kafka-5:9092"
+      JVM_OPTS: "-Xms32M -Xmx64M"
+
+networks:
+  default:
+    external:
+      name: zoo
